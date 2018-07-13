@@ -79,7 +79,6 @@
     }
     [self resetRefreshFrame];
     [self updateRefreshContentFrame];
-    self.hidden = NO;
 }
 
 - (void)updateRefreshContentFrame {

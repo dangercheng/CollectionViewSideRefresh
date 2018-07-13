@@ -48,6 +48,11 @@
 - (void)resetRefreshFrame {
     CGFloat frameX = self.collectionView.contentSize.width + self.collectionView.contentInset.left;
     self.frame = CGRectMake(frameX, 0, SideRefreshWidth, self.collectionView.frame.size.height);
+    if(self.collectionView.contentSize.width > self.collectionView.frame.size.width) {
+        self.hidden = NO;
+    } else {
+        self.hidden = YES;
+    }
 }
 
 @end

@@ -49,6 +49,7 @@
 - (void)resetRefreshFrame {
     CGFloat frameX = (SideRefreshWidth + self.collectionView.contentInset.left) * - 1;
     self.frame = CGRectMake(frameX, 0, SideRefreshWidth, self.collectionView.frame.size.height);
+    self.hidden = NO;
 }
 
 @end
