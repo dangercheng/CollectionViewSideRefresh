@@ -8,6 +8,7 @@
 - **右拉刷新，左拉加载更多**
 - **自定义提示文案和加载动画**
 - **方便隐藏和显示加载提示文本和动画**
+- **支持 ‘没有更多数据’ 提示**
 
 # 接入方式
 1. 下载源码，将文件夹 "SideRefresh"添加进工程
@@ -68,12 +69,30 @@ refreshFooter.hideIndicator = YES;//隐藏加载动画
 self.collectionView.sideRefreshFooter = refreshFooter;
 ```
 ![隐藏提示或动画](https://sfault-image.b0.upaiyun.com/365/863/3658631273-5b487722e5f30_articlex)
+## ‘没有更多数据’ 提示
+显示默认提示
+```
+[self.collectionView showEmptyFooter]
+```
+显示自定义提示
+```
+[self.collectionView showEmptyFooterWithMessage:@"不要看了，没有了。"];
+```
+![没有更多数据.png](https://sfault-image.b0.upaiyun.com/213/366/2133667725-5b52f8f714335_articlex)
+
+**PS:隐藏需要手动调用**
+```
+[self.collectionView hideEmptyFooter];
+```
+
 # 实现方式
 
 - **通过Runtime为UICollectionView添加SideRefreshHeader和SideRefreshFooter属性**
 - **观察UICollectionView的contentOffset实现拖动相关逻辑**
 - **观察UICollectionView的contentSize来重置刷新视图**
-- 更多细节参见源码
+- 更多细节参见源码Demo
 
 如果觉得好用欢迎Star [github](https://github.com/dangercheng/CollectionViewSideRefresh), 使用问题请Issue。
+
+
 
