@@ -78,7 +78,7 @@ self.collectionView.sideRefreshFooter = refreshFooter;
 ```
 [self.collectionView showEmptyFooterWithMessage:@"不要看了，没有了。"];
 ```
-![没有更多数据.png](https://sfault-image.b0.upaiyun.com/213/366/2133667725-5b52f8f714335_articlex)
+![没有更多数据](https://sfault-image.b0.upaiyun.com/213/366/2133667725-5b52f8f714335_articlex)
 
 **PS:隐藏需要手动调用**
 ```
