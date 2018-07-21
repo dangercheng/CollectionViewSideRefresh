@@ -10,6 +10,7 @@
 #import "DefaultViewController.h"
 #import "CustomViewController.h"
 #import "HideItemViewController.h"
+#import "EmptyFooterViewController.h"
 
 @interface ViewController ()
 
@@ -30,6 +31,10 @@
 - (IBAction)clickShowHide:(id)sender {
     HideItemViewController *hideItemController = [self.storyboard instantiateViewControllerWithIdentifier:@"HideItemViewController"];
     [self.navigationController pushViewController:hideItemController animated:YES];
+}
+- (IBAction)clickEmptyFooter:(id)sender {
+    EmptyFooterViewController *emptyFooterViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"EmptyFooterViewController"];
+    [self.navigationController pushViewController:emptyFooterViewController animated:YES];
 }
 
 @end

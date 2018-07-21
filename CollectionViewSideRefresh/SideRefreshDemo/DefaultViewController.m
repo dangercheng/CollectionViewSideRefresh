@@ -78,4 +78,8 @@
     return myCollectionCell;
 }
 
+- (void)dealloc {
+    NSLog(@"DefaultViewController delloc");
+}
+
 @end

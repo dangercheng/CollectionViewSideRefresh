@@ -22,7 +22,7 @@
 }
 
 - (void)startLoadingAction {
-    if(self.loadActionBlock) {
+    if(self.loadActionBlock && self.superview) {
         self.loadActionBlock();
     }
 }
@@ -42,6 +42,9 @@
 
 #pragma mark - ContentOffset Observer 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if(![self.superview isEqual:self.collectionView]) {
+        return;
+    }
     if([keyPath isEqualToString:@"contentOffset"]) {
         [self handleContentOffsetChanged];
     }

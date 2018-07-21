@@ -127,6 +127,45 @@
             </objects>
             <point key="canvasLocation" x="2205" y="1549"/>
         </scene>
+        <!--Empty Footer View Controller-->
+        <scene sceneID="xPT-I9-WQZ">
+            <objects>
+                <viewController storyboardIdentifier="EmptyFooterViewController" id="3bb-bI-e8z" customClass="EmptyFooterViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m38-DI-dC7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QtL-K4-K53">
+                                <rect key="frame" x="0.0" y="20" width="375" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="qCg-CN-V72"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Af-SH-sGs">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yjt-yv-2wv" firstAttribute="trailing" secondItem="QtL-K4-K53" secondAttribute="trailing" id="B6e-8z-Wgz"/>
+                            <constraint firstItem="QtL-K4-K53" firstAttribute="top" secondItem="yjt-yv-2wv" secondAttribute="top" id="Xsf-fo-vc6"/>
+                            <constraint firstItem="QtL-K4-K53" firstAttribute="leading" secondItem="yjt-yv-2wv" secondAttribute="leading" id="eRy-Az-ch5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yjt-yv-2wv"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="QtL-K4-K53" id="uMp-i0-3fp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfl-Fn-HP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2223" y="2296"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ikf-g6-51f">
             <objects>
@@ -172,14 +211,23 @@
                                     <action selector="clickShowHide:" destination="4tv-Dq-0eP" eventType="touchUpInside" id="EX1-UM-RAx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaI-Nd-Ot8">
+                                <rect key="frame" x="133" y="354" width="108" height="30"/>
+                                <state key="normal" title="无更多数据提示"/>
+                                <connections>
+                                    <action selector="clickEmptyFooter:" destination="4tv-Dq-0eP" eventType="touchUpInside" id="N1j-9q-UBm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f6c-EM-q28" firstAttribute="centerX" secondItem="nhd-kL-aDq" secondAttribute="centerX" id="373-FR-i3e"/>
+                            <constraint firstItem="EaI-Nd-Ot8" firstAttribute="top" secondItem="YeO-c8-dl8" secondAttribute="bottom" constant="50" id="7Pe-sf-cOw"/>
                             <constraint firstItem="f6c-EM-q28" firstAttribute="top" secondItem="nhd-kL-aDq" secondAttribute="top" constant="50" id="LFh-vB-j3m"/>
                             <constraint firstItem="aju-jA-g5a" firstAttribute="top" secondItem="f6c-EM-q28" secondAttribute="bottom" constant="50" id="S7m-vY-tk4"/>
                             <constraint firstItem="YeO-c8-dl8" firstAttribute="centerX" secondItem="nhd-kL-aDq" secondAttribute="centerX" id="m1h-XM-3gl"/>
                             <constraint firstItem="YeO-c8-dl8" firstAttribute="top" secondItem="aju-jA-g5a" secondAttribute="bottom" constant="50" id="qLr-iC-G4O"/>
+                            <constraint firstItem="EaI-Nd-Ot8" firstAttribute="centerX" secondItem="nhd-kL-aDq" secondAttribute="centerX" id="sRR-xd-lXB"/>
                             <constraint firstItem="aju-jA-g5a" firstAttribute="centerX" secondItem="nhd-kL-aDq" secondAttribute="centerX" id="vDJ-xS-eJZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nhd-kL-aDq"/>

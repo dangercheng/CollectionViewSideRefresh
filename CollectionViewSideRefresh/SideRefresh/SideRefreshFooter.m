@@ -7,6 +7,7 @@
 //
 
 #import "SideRefreshFooter.h"
+#import "UICollectionView+SideRefresh.h"
 
 @implementation SideRefreshFooter
 
@@ -33,6 +34,10 @@
 }
 
 - (void)updateContentOffsetToLoading {
+    if(self.collectionView.isShowEmptyFooter) {
+        [self resetRefreshFrame];
+        return;
+    }
     CGFloat targetX = self.collectionView.contentSize.width - self.collectionView.frame.size.width + self.collectionView.contentInset.right + SideRefreshWidth;
     [UIView animateWithDuration:0.3 animations:^{
         [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:YES];
@@ -46,7 +51,7 @@
 }
 
 - (void)resetRefreshFrame {
-    CGFloat frameX = self.collectionView.contentSize.width + self.collectionView.contentInset.left;
+    CGFloat frameX = self.collectionView.contentSize.width + self.collectionView.contentInset.right;
     self.frame = CGRectMake(frameX, 0, SideRefreshWidth, self.collectionView.frame.size.height);
     if(self.collectionView.contentSize.width > self.collectionView.frame.size.width) {
         self.hidden = NO;

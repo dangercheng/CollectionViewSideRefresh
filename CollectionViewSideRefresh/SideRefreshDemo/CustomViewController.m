@@ -91,4 +91,8 @@
     return myCollectionCell;
 }
 
+- (void)dealloc {
+    NSLog(@"CustomViewController delloc");
+}
+
 @end

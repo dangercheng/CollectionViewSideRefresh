@@ -1,27 +1,27 @@
 //
-//  HideItemViewController.m
+//  EmptyFooterViewController.m
 //  CollectionViewSideRefresh
 //
-//  Created by DandJ on 2018/7/13.
+//  Created by DandJ on 2018/7/21.
 //  Copyright © 2018年 DandJ. All rights reserved.
 //
 
-#import "HideItemViewController.h"
+#import "EmptyFooterViewController.h"
 #import "UICollectionView+SideRefresh.h"
 #import "MyCollectionViewCell.h"
 
-@interface HideItemViewController ()<UICollectionViewDataSource>
+@interface EmptyFooterViewController ()<UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, assign) CGFloat itemCount;
 
+@property (nonatomic, assign) CGFloat itemCount;
 @end
 
-@implementation HideItemViewController
+@implementation EmptyFooterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"隐藏提示或动画";
+    self.title = @"没有更多数据-提示";
     self.itemCount = 3;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -44,6 +44,7 @@
             strongSelf.itemCount = 3;
             [strongSelf.collectionView.sideRefreshHeader endLoading];
             [strongSelf.collectionView reloadData];
+            [strongSelf.collectionView hideEmptyFooter];
         });
     }];
     refreshHeader.hideMessage = YES;//隐藏提示
@@ -58,11 +59,15 @@
     self.collectionView.sideRefreshHeader = refreshHeader;
     
     SideRefreshFooter *refreshFooter = [SideRefreshFooter refreshWithLoadAction:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __strong __typeof(self) strongSelf = weakSelf;
             strongSelf.itemCount += 3;
             [strongSelf.collectionView.sideRefreshFooter endLoading];
             [strongSelf.collectionView reloadData];
+            if(strongSelf.itemCount == 6) {
+                [strongSelf.collectionView showEmptyFooter];
+//                [strongSelf.collectionView showEmptyFooterWithMessage:@"不要看了，没有了。"];
+            }
         });
     }];
     refreshFooter.hideIndicator = YES;//隐藏加载动画
@@ -87,7 +92,8 @@
 }
 
 - (void)dealloc {
-    NSLog(@"HideItemViewController delloc");
+    NSLog(@"EmptyFooterViewController delloc");
 }
+
 
 @end
