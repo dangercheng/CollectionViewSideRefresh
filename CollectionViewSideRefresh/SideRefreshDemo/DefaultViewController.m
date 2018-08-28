@@ -30,6 +30,8 @@
     
     self.collectionView.collectionViewLayout = flowLayout;
     self.collectionView.dataSource = self;
+    self.collectionView.pagingEnabled = YES;
+
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MyCollectionViewCell"];
     [self setupRefreshHeaderFoorer];
 }

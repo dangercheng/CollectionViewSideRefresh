@@ -9,7 +9,7 @@
 #import "UICollectionView+SideRefresh.h"
 #import <objc/runtime.h>
 
-@interface UICollectionView (SideRefresh)
+@interface UICollectionView ()
 @property (nonatomic, strong) SideRefreshEmptyFooter *sideRefreshEmptyFooter;
 @end
 

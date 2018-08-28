@@ -62,9 +62,13 @@
     SideRefreshFooter *refreshFooter = [SideRefreshFooter refreshWithLoadAction:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __strong __typeof(self) strongSelf = weakSelf;
-            strongSelf.itemCount += 3;
-            [strongSelf.collectionView.sideRefreshFooter endLoading];
-            [strongSelf.collectionView reloadData];
+            if(!(strongSelf.itemCount > 10)) {
+                strongSelf.itemCount += 3;
+                [strongSelf.collectionView.sideRefreshFooter endLoading];
+                [strongSelf.collectionView reloadData];
+            } else {
+                [strongSelf.collectionView.sideRefreshFooter endLoading];
+            }
         });
     }];
     refreshFooter.loadingImages = [loadingImages mutableCopy];//自定义图片动画

@@ -31,6 +31,19 @@
 - (void)updateContentOffsetToNormal {
     self.hidden = YES;
     self.frame = CGRectZero;
+    //先让collectionView reloaddata
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        __strong __typeof(self) strongSelf = weakSelf;
+        CGFloat tempV = strongSelf.collectionView.contentOffset.x + strongSelf.collectionView.frame.size.width + strongSelf.collectionView.contentInset.right;
+
+        if(strongSelf.collectionView.pagingEnabled || tempV > strongSelf.collectionView.contentSize.width) {
+            CGFloat targetX = strongSelf.collectionView.contentOffset.x - SideRefreshWidth;
+            [UIView animateWithDuration:0.3 animations:^{
+                [strongSelf.collectionView setContentOffset:CGPointMake(targetX, 0) animated:YES];
+            } completion:nil];
+        }
+    });
 }
 
 - (void)updateContentOffsetToLoading {
