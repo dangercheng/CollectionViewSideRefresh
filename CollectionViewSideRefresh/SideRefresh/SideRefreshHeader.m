@@ -7,6 +7,7 @@
 //
 
 #import "SideRefreshHeader.h"
+#import "UICollectionView+SideExtension.h"
 
 @implementation SideRefreshHeader
 
@@ -29,14 +30,14 @@
 
 - (void)updateContentOffsetToNormal {
     [UIView animateWithDuration:0.3 animations:^{
-        [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
-    } completion:nil];
+        [self.collectionView setContentInset:self.originalContentInset];
+    }];
 }
 
 - (void)updateContentOffsetToLoading {
-    CGFloat targetX = (SideRefreshWidth + self.collectionView.contentInset.left) * -1;
+    CGFloat targetLeft = (SideRefreshWidth + self.originalContentInset.left);
     [UIView animateWithDuration:0.3 animations:^{
-        [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:YES];
+        [self.collectionView setSide_insetL:targetLeft];
     }];
 }
 
@@ -47,7 +48,7 @@
 }
 
 - (void)resetRefreshFrame {
-    CGFloat frameX = (SideRefreshWidth + self.collectionView.contentInset.left) * - 1;
+    CGFloat frameX = (SideRefreshWidth + self.originalContentInset.left) * - 1;
     self.frame = CGRectMake(frameX, 0, SideRefreshWidth, self.collectionView.frame.size.height);
     self.hidden = NO;
 }

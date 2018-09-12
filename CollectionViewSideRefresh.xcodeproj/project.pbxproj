@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		532FF95F2101A78800CC3A80 /* SideRefreshEmptyFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FF95E2101A78800CC3A80 /* SideRefreshEmptyFooter.m */; };
 		532FF9622103297E00CC3A80 /* EmptyFooterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532FF9612103297E00CC3A80 /* EmptyFooterViewController.m */; };
+		534195602148F7D1005EF096 /* UICollectionView+SideExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5341955F2148F7D1005EF096 /* UICollectionView+SideExtension.m */; };
 		53C040F520F60342005FAB25 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C040F420F60342005FAB25 /* AppDelegate.m */; };
 		53C040F820F60342005FAB25 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C040F720F60342005FAB25 /* ViewController.m */; };
 		53C040FB20F60342005FAB25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53C040F920F60342005FAB25 /* Main.storyboard */; };
@@ -31,6 +32,8 @@
 		532FF95E2101A78800CC3A80 /* SideRefreshEmptyFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SideRefreshEmptyFooter.m; sourceTree = "<group>"; };
 		532FF9602103297E00CC3A80 /* EmptyFooterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyFooterViewController.h; sourceTree = "<group>"; };
 		532FF9612103297E00CC3A80 /* EmptyFooterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyFooterViewController.m; sourceTree = "<group>"; };
+		5341955E2148F7D1005EF096 /* UICollectionView+SideExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+SideExtension.h"; sourceTree = "<group>"; };
+		5341955F2148F7D1005EF096 /* UICollectionView+SideExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+SideExtension.m"; sourceTree = "<group>"; };
 		53C040F020F60342005FAB25 /* CollectionViewSideRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewSideRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53C040F320F60342005FAB25 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		53C040F420F60342005FAB25 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 				532FF95E2101A78800CC3A80 /* SideRefreshEmptyFooter.m */,
 				53C0411020F60435005FAB25 /* UICollectionView+SideRefresh.h */,
 				53C0411120F60435005FAB25 /* UICollectionView+SideRefresh.m */,
+				5341955E2148F7D1005EF096 /* UICollectionView+SideExtension.h */,
+				5341955F2148F7D1005EF096 /* UICollectionView+SideExtension.m */,
 				53C0411320F6065B005FAB25 /* SideRefresh.h */,
 				53C0411420F6065B005FAB25 /* SideRefresh.m */,
 			);
@@ -223,6 +228,7 @@
 				53C040F520F60342005FAB25 /* AppDelegate.m in Sources */,
 				53C0412220F88B52005FAB25 /* DefaultViewController.m in Sources */,
 				53C0410C20F60410005FAB25 /* SideRefreshHeader.m in Sources */,
+				534195602148F7D1005EF096 /* UICollectionView+SideExtension.m in Sources */,
 				53C0412D20F88E05005FAB25 /* HideItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

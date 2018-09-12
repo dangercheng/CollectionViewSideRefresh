@@ -82,6 +82,16 @@ typedef void(^loadAction)(void);
 @property (nonatomic, strong) UIActivityIndicatorView *defaultIndicator;
 
 /**
+ 原始的ContentInset
+ */
+@property (nonatomic, assign) UIEdgeInsets originalContentInset;
+
+/**
+ 是否支持page
+ */
+@property (nonatomic, assign) BOOL collectionViewPageEnabel;
+
+/**
  隐藏文本
  */
 @property (nonatomic, assign) BOOL hideMessage;

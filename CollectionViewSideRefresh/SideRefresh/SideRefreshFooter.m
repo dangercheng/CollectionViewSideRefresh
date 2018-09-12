@@ -8,6 +8,7 @@
 
 #import "SideRefreshFooter.h"
 #import "UICollectionView+SideRefresh.h"
+#import "UICollectionView+SideExtension.h"
 
 @implementation SideRefreshFooter
 
@@ -29,21 +30,19 @@
 }
 
 - (void)updateContentOffsetToNormal {
-    self.hidden = YES;
-    self.frame = CGRectZero;
-    //先让collectionView reloaddata
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         __strong __typeof(self) strongSelf = weakSelf;
-        CGFloat tempV = strongSelf.collectionView.contentOffset.x + strongSelf.collectionView.frame.size.width + strongSelf.collectionView.contentInset.right;
-
-        if(strongSelf.collectionView.pagingEnabled || tempV > strongSelf.collectionView.contentSize.width) {
-            CGFloat targetX = strongSelf.collectionView.contentOffset.x - SideRefreshWidth;
-            [UIView animateWithDuration:0.3 animations:^{
-                [strongSelf.collectionView setContentOffset:CGPointMake(targetX, 0) animated:YES];
-            } completion:nil];
+        if(!strongSelf)return;
+        if(strongSelf.collectionView.isShowEmptyFooter) {
+           [strongSelf.collectionView setSide_insetR:strongSelf.originalContentInset.right];
         }
     });
+    if(self.collectionViewPageEnabel) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.collectionView setSide_insetR:self.originalContentInset.right];
+        }];
+    }
 }
 
 - (void)updateContentOffsetToLoading {
@@ -51,9 +50,9 @@
         [self resetRefreshFrame];
         return;
     }
-    CGFloat targetX = self.collectionView.contentSize.width - self.collectionView.frame.size.width + self.collectionView.contentInset.right + SideRefreshWidth;
+    CGFloat targetRight = self.originalContentInset.right + SideRefreshWidth;
     [UIView animateWithDuration:0.3 animations:^{
-        [self.collectionView setContentOffset:CGPointMake(targetX, 0) animated:YES];
+        [self.collectionView setSide_insetR:targetRight];
     }];
 }
 
@@ -64,13 +63,12 @@
 }
 
 - (void)resetRefreshFrame {
-    CGFloat frameX = self.collectionView.contentSize.width + self.collectionView.contentInset.right;
+    CGFloat frameX = self.collectionView.contentSize.width + self.originalContentInset.right;
     self.frame = CGRectMake(frameX, 0, SideRefreshWidth, self.collectionView.frame.size.height);
-    if(self.collectionView.contentSize.width > self.collectionView.frame.size.width) {
-        self.hidden = NO;
-    } else {
-        self.hidden = YES;
+    if(!(self.collectionView.contentSize.width > self.collectionView.frame.size.width)) {
+        self.frame = CGRectMake(self.collectionView.frame.size.width, 0, SideRefreshWidth, self.collectionView.frame.size.height);
     }
+    self.hidden = NO;
 }
 
 @end

@@ -65,10 +65,10 @@
             if(!(strongSelf.itemCount > 10)) {
                 strongSelf.itemCount += 3;
                 [strongSelf.collectionView.sideRefreshFooter endLoading];
-                [strongSelf.collectionView reloadData];
             } else {
                 [strongSelf.collectionView.sideRefreshFooter endLoading];
             }
+            [strongSelf.collectionView reloadData];
         });
     }];
     refreshFooter.loadingImages = [loadingImages mutableCopy];//自定义图片动画

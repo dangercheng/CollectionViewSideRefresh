@@ -31,6 +31,7 @@
     
     self.collectionView.collectionViewLayout = flowLayout;
     self.collectionView.dataSource = self;
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MyCollectionViewCell"];
     
     [self setupRefreshHeaderFoorer];

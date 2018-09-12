@@ -63,7 +63,6 @@
             strongSelf.itemCount += 3;
             [strongSelf.collectionView.sideRefreshFooter endLoading];
             [strongSelf.collectionView reloadData];
-            int a = 10;
         });
     }];
     refreshFooter.hideIndicator = YES;//隐藏加载动画

@@ -7,6 +7,7 @@
 //
 
 #import "SideRefresh.h"
+#import "UICollectionView+SideExtension.h"
 
 @implementation SideRefresh
 
@@ -14,7 +15,9 @@
     [super willMoveToSuperview:newSuperview];
     if ([newSuperview isKindOfClass:[UICollectionView class]]) {
         self.collectionView = (UICollectionView *)newSuperview;
-        
+        self.collectionView.alwaysBounceHorizontal = YES;
+        self.originalContentInset = self.collectionView.side_inset;
+        self.collectionViewPageEnabel = self.collectionView.pagingEnabled;
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
         [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
         [self.collectionView addObserver:self forKeyPath:@"contentSize" options:options context:nil];
@@ -163,6 +166,7 @@
                 [self.loadingImageView stopAnimating];
                 [self.defaultIndicator stopAnimating];
             }
+            self.collectionView.pagingEnabled = self.collectionViewPageEnabel;
             break;
         case SideRefreshStatusPulling:
             self.messageLabel.text = self.pullingMessage;
@@ -173,6 +177,7 @@
             [self startLoadingAction];
             [self.loadingImageView startAnimating];
             [self.defaultIndicator startAnimating];
+            self.collectionView.pagingEnabled = NO;
             break;
     }
     self.oldRefreshStatus = refreshStatus;
