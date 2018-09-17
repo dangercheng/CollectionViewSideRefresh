@@ -65,6 +65,8 @@
         } else {
             if(self.refreshStatus == SideRefreshStatusPulling) {
                 self.refreshStatus = SideRefreshStatusNormal;
+            } else if(self.refreshStatus == SideRefreshStatusLoading) {
+                self.collectionView.pagingEnabled = self.collectionViewPageEnabel;
             }
         }
     } else {
