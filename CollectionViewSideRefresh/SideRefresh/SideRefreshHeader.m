@@ -29,12 +29,14 @@
 }
 
 - (void)updateContentOffsetToNormal {
+    self.collectionView.pagingEnabled = self.collectionViewPageEnabel;
     [UIView animateWithDuration:0.3 animations:^{
         [self.collectionView setContentInset:self.originalContentInset];
     }];
 }
 
 - (void)updateContentOffsetToLoading {
+    self.collectionView.pagingEnabled = NO;
     CGFloat targetLeft = (SideRefreshWidth + self.originalContentInset.left);
     [UIView animateWithDuration:0.3 animations:^{
         [self.collectionView setSide_insetL:targetLeft];
@@ -51,6 +53,14 @@
     CGFloat frameX = (SideRefreshWidth + self.originalContentInset.left) * - 1;
     self.frame = CGRectMake(frameX, 0, SideRefreshWidth, self.collectionView.frame.size.height);
     self.hidden = NO;
+}
+
+- (void)keepRefreshingOffset {
+    if(!self.collectionViewPageEnabel) {
+        return;
+    }
+    CGFloat targetX = (SideRefreshWidth + self.originalContentInset.left) * - 1;
+    [self.collectionView setContentOffset:CGPointMake(targetX, self.collectionView.contentOffset.y) animated:NO];
 }
 
 @end

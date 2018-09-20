@@ -66,12 +66,16 @@
             if(self.refreshStatus == SideRefreshStatusPulling) {
                 self.refreshStatus = SideRefreshStatusNormal;
             } else if(self.refreshStatus == SideRefreshStatusLoading) {
-                self.collectionView.pagingEnabled = self.collectionViewPageEnabel;
+//                self.collectionView.pagingEnabled = NO;
+                self.refreshStatus = SideRefreshStatusNormal;
             }
         }
     } else {
         if(self.refreshStatus == SideRefreshStatusPulling) {
             self.refreshStatus = SideRefreshStatusLoading;
+        }
+        else if(self.refreshStatus == SideRefreshStatusLoading) {
+            [self keepRefreshingOffset];
         }
     }
     [self updateRefreshFrame];
@@ -157,6 +161,10 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)keepRefreshingOffset {
+    [self doesNotRecognizeSelector:_cmd];
+}
+
 #pragma mark - setter & getter
 - (void)setRefreshStatus:(SideRefreshStatus)refreshStatus {
     _refreshStatus = refreshStatus;
@@ -168,7 +176,6 @@
                 [self.loadingImageView stopAnimating];
                 [self.defaultIndicator stopAnimating];
             }
-            self.collectionView.pagingEnabled = self.collectionViewPageEnabel;
             break;
         case SideRefreshStatusPulling:
             self.messageLabel.text = self.pullingMessage;
@@ -179,7 +186,6 @@
             [self startLoadingAction];
             [self.loadingImageView startAnimating];
             [self.defaultIndicator startAnimating];
-            self.collectionView.pagingEnabled = NO;
             break;
     }
     self.oldRefreshStatus = refreshStatus;

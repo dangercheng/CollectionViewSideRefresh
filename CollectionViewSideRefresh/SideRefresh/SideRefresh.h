@@ -151,4 +151,9 @@ typedef void(^loadAction)(void);
  */
 - (void)resetRefreshFrame;
 
+/**
+ 保持刷新状态的offset
+ */
+- (void)keepRefreshingOffset;
+
 @end

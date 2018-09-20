@@ -71,4 +71,12 @@
     self.hidden = NO;
 }
 
+- (void)keepRefreshingOffset {
+    if(!self.collectionView.pagingEnabled) {
+        return;
+    }
+    CGFloat targetX = SideRefreshWidth + self.originalContentInset.right + self.collectionView.contentSize.width - self.collectionView.frame.size.width;
+    [self.collectionView setContentOffset:CGPointMake(targetX, self.collectionView.contentOffset.y) animated:NO];
+}
+
 @end

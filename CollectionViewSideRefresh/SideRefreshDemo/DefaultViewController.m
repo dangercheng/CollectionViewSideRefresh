@@ -31,7 +31,6 @@
     self.collectionView.collectionViewLayout = flowLayout;
     self.collectionView.dataSource = self;
     self.collectionView.pagingEnabled = YES;
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MyCollectionViewCell"];
     [self setupRefreshHeaderFoorer];
 }
@@ -76,7 +75,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MyCollectionViewCell *myCollectionCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MyCollectionViewCell" forIndexPath:indexPath];
-    myCollectionCell.titleLabel.text = [NSString stringWithFormat:@"NO.%ld", (indexPath.row + 1)];
+    myCollectionCell.titleLabel.text = [NSString stringWithFormat:@"NO.%d", (indexPath.row + 1)];
     return myCollectionCell;
 }
 
