@@ -28,6 +28,7 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
+    [self.superview removeObserver:self forKeyPath:@"contentSize"];
     if([newSuperview isKindOfClass:[UICollectionView class]]) {
         self.collectionView = (UICollectionView *)newSuperview;
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
@@ -50,10 +51,6 @@
     _messageLabel.textColor =  [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1/1.0];
     _messageLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_messageLabel];
-}
-
-- (void)dealloc {
-    [self.collectionView removeObserver:self forKeyPath:@"contentSize"];
 }
 
 #pragma mark - ContentOffset Observer

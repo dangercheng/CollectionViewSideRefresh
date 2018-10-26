@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"自定义";
-    self.itemCount = 3;
+    self.itemCount = 0;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -34,11 +34,15 @@
     
     [self setupRefreshHeaderFoorer];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.collectionView.sideRefreshHeader beginLoading];
+}
 
 - (void)setupRefreshHeaderFoorer {
     __weak typeof(self) weakSelf = self;
     SideRefreshHeader *refreshHeader = [SideRefreshHeader refreshWithLoadAction:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __strong __typeof(self) strongSelf = weakSelf;
             strongSelf.itemCount = 3;
             [strongSelf.collectionView.sideRefreshHeader endLoading];

@@ -13,14 +13,13 @@
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     [super willMoveToSuperview:newSuperview];
+    [self removeObserver];
     if ([newSuperview isKindOfClass:[UICollectionView class]]) {
         self.collectionView = (UICollectionView *)newSuperview;
         self.collectionView.alwaysBounceHorizontal = YES;
         self.originalContentInset = self.collectionView.side_inset;
         self.collectionViewPageEnabel = self.collectionView.pagingEnabled;
-        NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-        [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
-        [self.collectionView addObserver:self forKeyPath:@"contentSize" options:options context:nil];
+        [self addObserver];
     }
 }
 
@@ -38,9 +37,15 @@
     self.refreshStatus = SideRefreshStatusNormal;
 }
 
-- (void)dealloc {
-    [self.collectionView removeObserver:self forKeyPath:@"contentOffset"];
-    [self.collectionView removeObserver:self forKeyPath:@"contentSize"];
+- (void)removeObserver {
+    [self.superview removeObserver:self forKeyPath:@"contentOffset"];
+    [self.superview removeObserver:self forKeyPath:@"contentSize"];
+}
+
+- (void)addObserver {
+    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
+    [self.collectionView addObserver:self forKeyPath:@"contentOffset" options:options context:nil];
+    [self.collectionView addObserver:self forKeyPath:@"contentSize" options:options context:nil];
 }
 
 #pragma mark - ContentOffset Observer 
