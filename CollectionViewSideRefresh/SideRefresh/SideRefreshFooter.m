@@ -51,14 +51,24 @@
         return;
     }
     CGFloat targetRight = self.originalContentInset.right + SideRefreshWidth;
+    CGFloat showWidth = self.collectionView.frame.size.width - self.originalContentInset.right - self.originalContentInset.right;
+    CGFloat spaceWidth = showWidth - self.collectionView.contentSize.width;
     [UIView animateWithDuration:0.3 animations:^{
-        [self.collectionView setSide_insetR:targetRight];
+        if(spaceWidth > 0) {//应当考虑content显示不完整个CollectionView的情况
+            [self.collectionView setSide_insetR:(targetRight + spaceWidth)];
+        } else {
+            [self.collectionView setSide_insetR:targetRight];
+        }
     }];
 }
 
 - (BOOL)pullToReadyRefresh {
     CGFloat offsetX = self.collectionView.contentOffset.x;
-    CGFloat targetX = SideRefreshWidth + self.collectionView.contentSize.width - self.collectionView.frame.size.width;
+    CGFloat mostRightOffset = self.collectionView.contentSize.width - self.collectionView.frame.size.width;
+    if(mostRightOffset < 0) {//考虑Content显示不完整个CollectionView的情况
+        mostRightOffset = 0;
+    }
+    CGFloat targetX = SideRefreshWidth + mostRightOffset;
     return offsetX > targetX;
 }
 

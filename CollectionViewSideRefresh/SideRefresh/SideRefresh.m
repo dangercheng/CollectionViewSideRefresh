@@ -8,6 +8,7 @@
 
 #import "SideRefresh.h"
 #import "UICollectionView+SideExtension.h"
+#import "UICollectionView+SideRefresh.h"
 
 @implementation SideRefresh
 
@@ -35,6 +36,7 @@
 
 - (void)endLoading {
     self.refreshStatus = SideRefreshStatusNormal;
+    [self.collectionView hideEmptyFooter];
 }
 
 - (void)removeObserver {

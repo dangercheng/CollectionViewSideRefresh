@@ -50,7 +50,6 @@
             strongSelf.itemCount = 3;
             [strongSelf.collectionView.sideRefreshHeader endLoading];
             [strongSelf.collectionView reloadData];
-            [strongSelf.collectionView hideEmptyFooter];
         });
     }];
     refreshHeader.hideMessage = YES;//隐藏提示
