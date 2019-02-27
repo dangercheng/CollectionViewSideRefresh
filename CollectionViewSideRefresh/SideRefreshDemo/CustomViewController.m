@@ -66,7 +66,7 @@
     SideRefreshFooter *refreshFooter = [SideRefreshFooter refreshWithLoadAction:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __strong __typeof(self) strongSelf = weakSelf;
-            if(!(strongSelf.itemCount > 10)) {
+            if(!(strongSelf.itemCount > 20)) {
                 strongSelf.itemCount += 3;
                 [strongSelf.collectionView.sideRefreshFooter endLoading];
             } else {

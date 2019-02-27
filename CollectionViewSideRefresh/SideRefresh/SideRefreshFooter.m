@@ -34,9 +34,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         __strong __typeof(self) strongSelf = weakSelf;
         if(!strongSelf)return;
-        if(strongSelf.collectionView.isShowEmptyFooter) {
-           [strongSelf.collectionView setSide_insetR:strongSelf.originalContentInset.right];
-        }
+        [strongSelf.collectionView setSide_insetR:strongSelf.originalContentInset.right];
     });
     if(self.collectionViewPageEnabel) {
         [UIView animateWithDuration:0.3 animations:^{
@@ -51,7 +49,7 @@
         return;
     }
     CGFloat targetRight = self.originalContentInset.right + SideRefreshWidth;
-    CGFloat showWidth = self.collectionView.frame.size.width - self.originalContentInset.right - self.originalContentInset.right;
+    CGFloat showWidth = self.collectionView.frame.size.width - self.originalContentInset.right;
     CGFloat spaceWidth = showWidth - self.collectionView.contentSize.width;
     [UIView animateWithDuration:0.3 animations:^{
         if(spaceWidth > 0) {//应当考虑content显示不完整个CollectionView的情况
